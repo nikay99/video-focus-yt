@@ -1,6 +1,6 @@
 # Video Focus
 
-Browser extension (Chrome, Brave, Edge) that hides everything except the video on regular YouTube video pages (not Shorts, home or search): no recommendations, comments or header. Black background, only the picture in focus.
+Browser extension (Chrome, Brave, Edge) for watching YouTube in one half of your screen while you work in the other: on regular YouTube video pages it hides recommendations, comments, title and the header, so only the video stays (not on Shorts, home or search).
 
 - Turn on: click the Video Focus icon in the toolbar at the top of the browser (or press **Alt+Shift+F**) while watching a video. On a YouTube video page the icon turns dark and shows a small grey ON label while focus mode is on; it is bright when the mode is off. On all other sites it stays normal and a click only shows a short hint.
 - Turn off: double-click the video (the icon or **Alt+Shift+F** work too)

@@ -1,15 +1,17 @@
 # Chrome Web Store listing (draft, English)
 
 **Name:** Video Focus
-**Summary (max 132 chars):** Hides recommendations, comments and the header on YouTube video pages. Black background, only the video in focus.
+**Summary (max 132 chars):** Watch YouTube in one half of your screen while you work: hides recommendations, comments and the header, only the video stays.
 
 **Detailed description:**
-Video Focus gives you a distraction-free player on regular YouTube video pages. It does not touch the YouTube home page, search, channels or Shorts.
+Watch YouTube in one half of your screen while you work in the other.
+
+Put a video window next to your editor, chat or notes. With Video Focus the video fills its half of the screen: recommendations, comments, title and the header disappear, the page turns black and nothing squeezes the picture. It works on regular YouTube video pages only and does not touch the home page, search, channels or Shorts.
 
 How it works:
-1. Open a video.
-2. Click the Video Focus icon in the toolbar at the top of your browser. On a YouTube video page the icon turns dark and shows a small grey ON label while focus mode is on, just like the page. It is bright when the mode is off. On all other sites the icon stays normal, and a click only shows a short hint.
-3. Everything around the video disappears: recommendations, sidebar, header, title, description and comments. The page turns black and the video fills the window.
+1. Open a video in a window next to your work (for example split-screen, one half each).
+2. Click the Video Focus icon in the toolbar at the top of your browser. On a YouTube video page the icon turns dark and shows a small grey ON label while focus mode is on. It is bright when the mode is off. On all other sites the icon stays normal, and a click only shows a short hint.
+3. Everything around the video disappears: recommendations, sidebar, header, title, description and comments. The video fills the window.
 4. To leave focus mode, double-click the video. (Alt+Shift+F or the toolbar icon works too.)
 
 Also hidden while it is on: end cards, end-screen suggestions and pause overlays.

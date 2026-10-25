@@ -3,7 +3,7 @@
     "message": "Video Focus"
   },
   "extDescription": {
-    "message": "Hides recommendations, comments and the header on YouTube video pages. Black background, only the video in focus."
+    "message": "Watch YouTube in one half of your screen while you work: hides recommendations, comments and the header, only the video stays."
   },
   "actionTitle": {
     "message": "Toggle Video Focus (Alt+Shift+F)"
