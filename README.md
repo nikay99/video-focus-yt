@@ -6,7 +6,11 @@ Browser extension (Chrome, Brave, Edge) that hides everything except the video o
 - Turn off: double-click the video (the icon or **Alt+Shift+F** work too)
 - No data collection, no network requests. See the [privacy policy](https://nikay99.github.io/video-focus-yt/).
 
+## Download
+The ready-to-install ZIP is on the [Releases page](https://github.com/nikay99/video-focus-yt/releases/latest).
+
 ## Install (developer mode)
+Unzip the download first, then:
 1. Open `chrome://extensions` (or `brave://extensions`), enable **Developer mode**.
 2. Click **Load unpacked** and select this folder.
 
