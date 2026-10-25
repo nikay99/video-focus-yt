@@ -1,0 +1,26 @@
+{
+  "extName": {
+    "message": "Video Focus"
+  },
+  "extDescription": {
+    "message": "Blendet auf YouTube-Videoseiten Vorschläge, Kommentare und die Kopfzeile aus. Schwarzer Hintergrund, nur das Video im Fokus."
+  },
+  "actionTitle": {
+    "message": "Video Focus an/aus (Alt+Shift+F)"
+  },
+  "commandToggle": {
+    "message": "Video Focus an/aus"
+  },
+  "exitButton": {
+    "message": "Focus beenden"
+  },
+  "badgeOn": {
+    "message": "AN"
+  },
+  "actionTitleOn": {
+    "message": "Video Focus: AN (Alt+Shift+F)"
+  },
+  "actionTitleOff": {
+    "message": "Video Focus: AUS (Alt+Shift+F)"
+  }
+}

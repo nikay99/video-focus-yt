@@ -1,0 +1,26 @@
+{
+  "extName": {
+    "message": "Video Focus"
+  },
+  "extDescription": {
+    "message": "Hides recommendations, comments and the header on YouTube video pages. Black background, only the video in focus."
+  },
+  "actionTitle": {
+    "message": "Toggle Video Focus (Alt+Shift+F)"
+  },
+  "commandToggle": {
+    "message": "Toggle Video Focus"
+  },
+  "exitButton": {
+    "message": "Exit focus mode"
+  },
+  "badgeOn": {
+    "message": "ON"
+  },
+  "actionTitleOn": {
+    "message": "Video Focus: ON (Alt+Shift+F)"
+  },
+  "actionTitleOff": {
+    "message": "Video Focus: OFF (Alt+Shift+F)"
+  }
+}
