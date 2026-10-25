@@ -1,8 +1,9 @@
 // Toggle via toolbar icon or keyboard shortcut. State lives in chrome.storage.local;
 // the content scripts of all open tabs react to it.
-// The toolbar icon shows the state: full colour = ON, dark grey = OFF.
-const ICONS_ON  = { 16: "icons/icon16.png",     48: "icons/icon48.png",     128: "icons/icon128.png" };
-const ICONS_OFF = { 16: "icons/off/icon16.png", 48: "icons/off/icon48.png", 128: "icons/off/icon128.png" };
+// The toolbar icon follows the page: focus mode ON = the page goes dark = dark icon,
+// focus mode OFF = bright icon in full colour.
+const ICONS_BRIGHT = { 16: "icons/icon16.png",     48: "icons/icon48.png",     128: "icons/icon128.png" };
+const ICONS_DIM    = { 16: "icons/dim/icon16.png", 48: "icons/dim/icon48.png", 128: "icons/dim/icon128.png" };
 
 async function toggle() {
   const { focusOn = false } = await chrome.storage.local.get("focusOn");
@@ -11,7 +12,7 @@ async function toggle() {
 
 async function updateIcon() {
   const { focusOn = false } = await chrome.storage.local.get("focusOn");
-  await chrome.action.setIcon({ path: focusOn ? ICONS_ON : ICONS_OFF });
+  await chrome.action.setIcon({ path: focusOn ? ICONS_DIM : ICONS_BRIGHT });
   await chrome.action.setBadgeText({ text: "" });
   await chrome.action.setTitle({
     title: chrome.i18n.getMessage(focusOn ? "actionTitleOn" : "actionTitleOff"),

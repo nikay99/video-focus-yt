@@ -9,9 +9,9 @@
   "action": {
     "default_title": "__MSG_actionTitle__",
     "default_icon": {
-      "16": "icons/off/icon16.png",
-      "48": "icons/off/icon48.png",
-      "128": "icons/off/icon128.png"
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
     }
   },
   "icons": {
