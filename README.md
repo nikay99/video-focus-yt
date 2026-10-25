@@ -7,9 +7,8 @@ Browser extension (Chrome, Brave, Edge) that hides everything except the video o
 - No data collection, no network requests. See the [privacy policy](https://nikay99.github.io/video-focus-yt/).
 
 ## Install (developer mode)
-1. Run `python3 tools/make_icons.py` once to generate the icons.
-2. Open `chrome://extensions` (or `brave://extensions`), enable **Developer mode**.
-3. Click **Load unpacked** and select this folder.
+1. Open `chrome://extensions` (or `brave://extensions`), enable **Developer mode**.
+2. Click **Load unpacked** and select this folder.
 
 ## License
 MIT. Independent project, not affiliated with or endorsed by YouTube or Google.

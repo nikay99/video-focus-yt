@@ -8,7 +8,7 @@ async function toggle() {
 async function updateBadge() {
   const { focusOn = false } = await chrome.storage.local.get("focusOn");
   await chrome.action.setBadgeText({ text: focusOn ? chrome.i18n.getMessage("badgeOn") : "" });
-  await chrome.action.setBadgeBackgroundColor({ color: "#e50914" });
+  await chrome.action.setBadgeBackgroundColor({ color: "#7c3aed" });
   await chrome.action.setTitle({
     title: chrome.i18n.getMessage(focusOn ? "actionTitleOn" : "actionTitleOff"),
   });
