@@ -22,5 +22,11 @@
   },
   "actionTitleOff": {
     "message": "Video Focus: AUS (Alt+Shift+F)"
+  },
+  "hintTitle": {
+    "message": "Video Focus"
+  },
+  "hintText": {
+    "message": "Video Focus funktioniert auf YouTube-Videoseiten. Öffne ein Video (youtube.com/watch?v=…) und klicke das Symbol erneut."
   }
 }

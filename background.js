@@ -14,9 +14,16 @@ const isWatchPage = (url) => {
   } catch { return false; }   // url is undefined for tabs outside youtube.com
 };
 
+// Switching only makes sense on a YouTube video page. Anywhere else the click is ignored
+// (the toolbar click opens a small hint popup there, see applyToTab).
 async function toggle() {
   const { focusOn = false } = await chrome.storage.local.get("focusOn");
   await chrome.storage.local.set({ focusOn: !focusOn });
+}
+
+async function toggleIfOnVideo(tab) {
+  if (!tab) { [tab] = await chrome.tabs.query({ active: true, currentWindow: true }); }
+  if (tab && isWatchPage(tab.url)) await toggle();
 }
 
 async function applyToTab(tab, focusOn) {
@@ -33,6 +40,8 @@ async function applyToTab(tab, focusOn) {
     if (chrome.action.setBadgeTextColor) await chrome.action.setBadgeTextColor({ tabId: tab.id, color: "#ffffff" });
   }
   await chrome.action.setTitle({ tabId: tab.id, title });
+  // Video page: no popup, so a click toggles. Other pages: a click shows the hint instead.
+  await chrome.action.setPopup({ tabId: tab.id, popup: onVideo ? "" : "hint.html" });
 }
 
 async function refreshAll() {
@@ -46,8 +55,8 @@ async function refreshTab(tabId) {
   try { await applyToTab(await chrome.tabs.get(tabId), focusOn); } catch { /* tab is gone */ }
 }
 
-chrome.action.onClicked.addListener(toggle);
-chrome.commands.onCommand.addListener((cmd) => { if (cmd === "toggle-focus") toggle(); });
+chrome.action.onClicked.addListener((tab) => toggleIfOnVideo(tab));
+chrome.commands.onCommand.addListener((cmd, tab) => { if (cmd === "toggle-focus") toggleIfOnVideo(tab); });
 chrome.storage.onChanged.addListener((changes) => { if (changes.focusOn) refreshAll(); });
 chrome.tabs.onUpdated.addListener((tabId, info) => { if (info.url || info.status) refreshTab(tabId); });
 chrome.tabs.onActivated.addListener(({ tabId }) => refreshTab(tabId));

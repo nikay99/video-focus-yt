@@ -8,7 +8,7 @@ Video Focus gives you a distraction-free player on regular YouTube video pages. 
 
 How it works:
 1. Open a video.
-2. Click the Video Focus icon in the toolbar at the top of your browser. On a YouTube video page the icon turns dark and shows a small grey ON label while focus mode is on, just like the page. It is bright when the mode is off. On all other sites the icon stays normal.
+2. Click the Video Focus icon in the toolbar at the top of your browser. On a YouTube video page the icon turns dark and shows a small grey ON label while focus mode is on, just like the page. It is bright when the mode is off. On all other sites the icon stays normal, and a click only shows a short hint.
 3. Everything around the video disappears: recommendations, sidebar, header, title, description and comments. The page turns black and the video fills the window.
 4. To leave focus mode, double-click the video. (Alt+Shift+F or the toolbar icon works too.)
 
