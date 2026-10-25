@@ -24,7 +24,7 @@ jobs:
 
       - name: Build the extension ZIP
         run: |
-          zip -qr "video-focus-${GITHUB_REF_NAME}.zip" manifest.json background.js content.js content.css icons _locales
+          zip -qr "video-focus-${GITHUB_REF_NAME}.zip" manifest.json background.js content.js content.css hint.html hint.js icons _locales
           unzip -l "video-focus-${GITHUB_REF_NAME}.zip"
 
       - name: Create the release
@@ -38,3 +38,9 @@ jobs:
           Install: download the ZIP, unzip it, open chrome://extensions (or brave://extensions), enable Developer mode, click Load unpacked and select the unzipped folder.
 
           Independent project, not affiliated with or endorsed by YouTube or Google."
+
+      - name: Remove the faulty v1.0.2 release (one-off)
+        if: github.ref_name == 'v1.0.3'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release delete v1.0.2 --cleanup-tag --yes || true
