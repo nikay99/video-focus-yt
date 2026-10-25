@@ -13,7 +13,10 @@ async function toggle() {
 async function updateIcon() {
   const { focusOn = false } = await chrome.storage.local.get("focusOn");
   await chrome.action.setIcon({ path: focusOn ? ICONS_DIM : ICONS_BRIGHT });
-  await chrome.action.setBadgeText({ text: "" });
+  // Small grey "ON" label while focus mode is on. Always English, in every browser language.
+  await chrome.action.setBadgeText({ text: focusOn ? "ON" : "" });
+  await chrome.action.setBadgeBackgroundColor({ color: "#6b7280" });
+  if (chrome.action.setBadgeTextColor) await chrome.action.setBadgeTextColor({ color: "#ffffff" });
   await chrome.action.setTitle({
     title: chrome.i18n.getMessage(focusOn ? "actionTitleOn" : "actionTitleOff"),
   });
