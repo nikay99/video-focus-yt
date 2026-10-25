@@ -43,10 +43,14 @@ html.vf-on #page-manager {
 html.vf-on body { overflow: hidden !important; }
 html.vf-on #page-manager { margin: 0 !important; }
 
-/* 4. Video fills the window */
+/* 4. Video fills the window.
+   Works for theater mode and for the normal layout: YouTube keeps the player's aspect ratio with
+   padding-top on a wrapper, which pushed the video to the bottom. We remove that padding, pin the
+   wrappers to the window and pin the player itself to the window as well. */
 html.vf-on ytd-watch-flexy #player-theater-container,
 html.vf-on ytd-watch-flexy #player-container-outer,
 html.vf-on ytd-watch-flexy #player-container-inner,
+html.vf-on ytd-watch-flexy #player-container,
 html.vf-on ytd-watch-flexy #full-bleed-container {
   position: fixed !important;
   inset: 0 !important;
@@ -54,17 +58,43 @@ html.vf-on ytd-watch-flexy #full-bleed-container {
   height: 100vh !important;
   max-width: none !important;
   max-height: none !important;
+  min-width: 0 !important;
   min-height: 0 !important;
   margin: 0 !important;
+  padding: 0 !important;
   background: #000 !important;
   z-index: 1000;
 }
-html.vf-on ytd-watch-flexy #movie_player,
+/* Ancestors with transform/contain/filter would make "fixed" relative to them instead of the window */
+html.vf-on ytd-watch-flexy,
+html.vf-on ytd-watch-flexy #columns,
+html.vf-on ytd-watch-flexy #primary,
+html.vf-on ytd-watch-flexy #primary-inner,
+html.vf-on ytd-watch-flexy #player,
+html.vf-on ytd-watch-flexy ytd-player,
+html.vf-on ytd-watch-flexy #container {
+  transform: none !important;
+  contain: none !important;
+  filter: none !important;
+  perspective: none !important;
+}
+html.vf-on ytd-watch-flexy #movie_player {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  margin: 0 !important;
+  z-index: 1001;
+}
 html.vf-on ytd-watch-flexy .html5-video-container {
+  position: absolute !important;
+  inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
 }
 html.vf-on ytd-watch-flexy .html5-main-video {
+  position: absolute !important;
+  inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
   left: 0 !important;
