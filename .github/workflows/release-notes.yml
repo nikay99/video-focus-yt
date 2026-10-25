@@ -1,0 +1,34 @@
+name: Release notes
+
+# Whenever CHANGELOG.md changes on main, copy each version's section into the notes of its GitHub release.
+on:
+  push:
+    branches: [main]
+    paths: [CHANGELOG.md]
+
+permissions:
+  contents: write
+
+jobs:
+  notes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update the release notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          for tag in $(gh release list --limit 100 --json tagName -q '.[].tagName'); do
+            v="${tag#v}"
+            awk -v v="$v" '/^## /{p=($2==v)} p' CHANGELOG.md | tail -n +2 > notes.md
+            if [ -s notes.md ]; then
+              {
+                echo
+                echo "Install: download the ZIP, unzip it, open chrome://extensions (or brave://extensions), enable Developer mode, click Load unpacked and select the unzipped folder."
+                echo
+                echo "Independent project, not affiliated with or endorsed by YouTube or Google."
+              } >> notes.md
+              gh release edit "$tag" --notes-file notes.md && echo "updated $tag"
+            fi
+          done

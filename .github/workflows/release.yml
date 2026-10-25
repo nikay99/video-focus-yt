@@ -1,6 +1,7 @@
 name: Release
 
-# Pushing a tag like v1.0.0 builds the extension ZIP and publishes it as a GitHub Release.
+# Pushing a tag like v1.0.5 builds the extension ZIP and publishes it as a GitHub Release.
+# The release notes come from the matching section of CHANGELOG.md.
 on:
   push:
     tags:
@@ -27,20 +28,23 @@ jobs:
           zip -qr "video-focus-${GITHUB_REF_NAME}.zip" manifest.json background.js content.js content.css hint.html hint.js icons _locales
           unzip -l "video-focus-${GITHUB_REF_NAME}.zip"
 
+      - name: Write the release notes from CHANGELOG.md
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          awk -v v="$VERSION" '/^## /{p=($2==v)} p' CHANGELOG.md | tail -n +2 > notes.md
+          if [ ! -s notes.md ]; then echo "Video Focus ${GITHUB_REF_NAME}" > notes.md; fi
+          {
+            echo
+            echo "Install: download the ZIP, unzip it, open chrome://extensions (or brave://extensions), enable Developer mode, click Load unpacked and select the unzipped folder."
+            echo
+            echo "Independent project, not affiliated with or endorsed by YouTube or Google."
+          } >> notes.md
+          cat notes.md
+
       - name: Create the release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release create "$GITHUB_REF_NAME" "video-focus-${GITHUB_REF_NAME}.zip" \
             --title "Video Focus ${GITHUB_REF_NAME}" \
-            --notes "Browser extension for Chrome, Brave and Edge. Hides everything except the video on regular YouTube video pages.
-
-          Install: download the ZIP, unzip it, open chrome://extensions (or brave://extensions), enable Developer mode, click Load unpacked and select the unzipped folder.
-
-          Independent project, not affiliated with or endorsed by YouTube or Google."
-
-      - name: Remove the faulty v1.0.2 release (one-off)
-        if: github.ref_name == 'v1.0.3'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh release delete v1.0.2 --cleanup-tag --yes || true
+            --notes-file notes.md
