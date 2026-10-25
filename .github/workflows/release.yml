@@ -1,0 +1,40 @@
+name: Release
+
+# Pushing a tag like v1.0.0 builds the extension ZIP and publishes it as a GitHub Release.
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check that the tag matches the manifest version
+        run: |
+          VERSION=$(python3 -c "import json;print(json.load(open('manifest.json'))['version'])")
+          if [ "v$VERSION" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match manifest version $VERSION"; exit 1
+          fi
+
+      - name: Build the extension ZIP
+        run: |
+          zip -qr "video-focus-${GITHUB_REF_NAME}.zip" manifest.json background.js content.js content.css icons _locales
+          unzip -l "video-focus-${GITHUB_REF_NAME}.zip"
+
+      - name: Create the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "video-focus-${GITHUB_REF_NAME}.zip" \
+            --title "Video Focus ${GITHUB_REF_NAME}" \
+            --notes "Browser extension for Chrome, Brave and Edge. Hides everything except the video on regular YouTube video pages.
+
+          Install: download the ZIP, unzip it, open chrome://extensions (or brave://extensions), enable Developer mode, click Load unpacked and select the unzipped folder.
+
+          Independent project, not affiliated with or endorsed by YouTube or Google."
